@@ -48,7 +48,7 @@ export default function GroceryForm({ getGroceries }) {
         id='quantity'
         value={groceryItem.quantity}
         type='number'
-        min={0}
+        step='any'
         required
       />
       <label htmlFor='unit'>Unit</label>

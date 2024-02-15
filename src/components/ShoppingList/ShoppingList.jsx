@@ -19,7 +19,7 @@ export default function ShoppingList({ groceryItems, getGroceries }) {
       <button onClick={clearPurchased}>Clear Purchased</button>
       <button onClick={clearList}>Clear List</button>
       {groceryItems.map((g) => (
-        <ShoppingItem {...g} getGroceries={getGroceries} />
+        <ShoppingItem key={g.id} {...g} getGroceries={getGroceries} />
       ))}
     </>
   );

@@ -5,7 +5,7 @@ const pool = require("../modules/pool");
 // GET GROCERIES
 router.get("/", (req, res) => {
   let queryText = `SELECT * FROM "groceries" ORDER BY 
-    item_name ASC, purchased ASC;`;
+  (purchased is true) ASC, item_name ASC;`;
   pool
     .query(queryText)
     .then((result) => {

@@ -25,11 +25,13 @@ export default function ShoppingItem({
       <p>
         {quantity} {unit}
       </p>
-      {!purchased && (
+      {!purchased ? (
         <>
           <button onClick={buyItem}>Buy</button>
           <button onClick={removeItem}>Remove</button>
         </>
+      ) : (
+        <>Purchased</>
       )}
     </div>
   );
