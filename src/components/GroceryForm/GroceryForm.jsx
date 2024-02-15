@@ -12,7 +12,8 @@ export default function GroceryForm({ getGroceries }) {
     setGroceryItem({ ...groceryItem, [name]: e.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (groceryItem.quantity < 0) {
       setGroceryItem({ ...groceryItem, quantity: 0 });
       alert(
