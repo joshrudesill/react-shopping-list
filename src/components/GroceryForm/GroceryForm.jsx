@@ -33,16 +33,21 @@ export default function GroceryForm({ getGroceries }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor='item'>Grocery Item</label>
+    <form onSubmit={handleSubmit} className='border-b-2'>
+      <label className='text-sm font-medium text-gray-900' htmlFor='item'>
+        Grocery Item
+      </label>
       <input
         onChange={(e) => handleUserInput(e, "item_name")}
         id='item'
         value={groceryItem.item_name}
         maxLength={80}
         required
+        className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1 '
       />
-      <label htmlFor='quantity'>Quantity</label>
+      <label htmlFor='quantity' className='text-sm font-medium text-gray-900'>
+        Quantity
+      </label>
       <input
         onChange={(e) => handleUserInput(e, "quantity")}
         id='quantity'
@@ -50,15 +55,24 @@ export default function GroceryForm({ getGroceries }) {
         type='number'
         step='any'
         required
+        className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1 '
       />
-      <label htmlFor='unit'>Unit</label>
+      <label htmlFor='unit' className='text-sm font-medium text-gray-900'>
+        Unit
+      </label>
       <input
         onChange={(e) => handleUserInput(e, "unit")}
         id='unit'
         value={groceryItem.unit}
         maxLength={20}
+        className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1 '
       />
-      <button type='submit'>Add Item</button>
+      <button
+        type='submit'
+        className='text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center mt-3 mb-2'
+      >
+        Add Item
+      </button>
     </form>
   );
 }

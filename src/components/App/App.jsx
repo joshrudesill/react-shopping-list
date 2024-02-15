@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   return (
-    <div className='App'>
+    <div>
       <Header />
       <main>
         <GroceryForm getGroceries={getGroceries} />
