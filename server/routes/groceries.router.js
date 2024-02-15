@@ -62,7 +62,7 @@ router.put("/:id", (req, res) => {
 
 // UPDATE GROCERIES UNPURCHASE ALL
 
-router.put("/unpurchase", (req, res) => {
+router.put("/g/unpurchase", (req, res) => {
   let queryText = `UPDATE "groceries" SET "purchased" = 'false'`;
 
   pool
@@ -99,7 +99,7 @@ router.delete("/:id", (req, res) => {
 
 // DELETE ALL
 
-router.delete("/all", (req, res) => {
+router.delete("/g/all", (req, res) => {
   let queryText = `DELETE FROM "groceries";`;
 
   pool
