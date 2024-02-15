@@ -52,7 +52,14 @@ router.put('/:id', (req, res) => {
 // UPDATE GROCERIES UNPURCHASE ALL
 
 router.put('/unpurchase', (req, res) => {
-    let queryText = `UPDATE * FROM "groceries" SET "purchased" = 'false'`
+    let queryText = `UPDATE "groceries" SET "purchased" = 'false'`
+
+    pool.query(queryText)
+    .then((result) => {
+        console.log(`PUT query worked ${queryText}`, result);
+        res.send
+    })
+
 })
 
 
