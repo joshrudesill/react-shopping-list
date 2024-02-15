@@ -3,16 +3,37 @@ import ShoppingItem from "../ShoppingItem/ShoppingItem";
 
 export default function ShoppingList({ groceryItems, getGroceries }) {
   const clearPurchased = () => {
-    axios
+    Swal.fire({
+      title: 'Confirmation dialogue',
+      text: 'Do you want to mark all items as unpurchased?',
+      icon: 'warning',
+      confirmButtonText: 'Confirm clear',
+      showCancelButton: true
+    }).then((result) => {
+      if(result.isConfirmed){
+      axios
       .put("/api/groceries/g/unpurchase")
       .then(getGroceries)
       .catch((e) => console.error(e));
+      }
+    })
   };
   const clearList = () => {
-    axios
-      .delete("/api/groceries/g/all")
-      .then(getGroceries)
-      .catch((e) => console.error(e));
+    Swal.fire({
+      title: 'Confirmation dialogue',
+      text: 'Do you want to clear?',
+      icon: 'warning',
+      confirmButtonText: 'Confirm clear',
+      showCancelButton: true
+    }).then((result) => {
+      if (result.isConfirmed){
+        axios
+        .delete("/api/groceries/g/all")
+        .then(getGroceries)
+        .catch((e) => console.error(e))
+      }
+    }
+    )
   };
   return (
     <>
