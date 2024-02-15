@@ -12,7 +12,7 @@ function App() {
   const getGroceries = () => {
     axios({
       method: "GET",
-      url: "/api/groceries/",
+      url: "/api/groceries",
     })
       .then((response) => {
         setGroceryItems(response.data);
