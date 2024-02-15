@@ -26,7 +26,11 @@ router.post("/", (req, res) => {
     values ($1, $2, $3);`;
 
   pool
-    .query(queryText, [newGrocery])
+    .query(queryText, [
+      newGrocery.item_name,
+      newGrocery.quantity,
+      newGrocery.unit,
+    ])
     .then((result) => {
       res.sendStatus(201);
     })
@@ -44,10 +48,16 @@ router.put("/:id", (req, res) => {
   let queryText = `UPDATE "groceries" SET "purchased" = 'true' 
     WHERE 'id' = $1;`;
 
-  pool.query(queryText, [id]).then((result) => {
-    console.log(`PUT query worked ${queryText}`, result);
-    res.sendStatus(500);
-  });
+  pool
+    .query(queryText, [id])
+    .then((result) => {
+      console.log(`PUT query worked ${queryText}`, result);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(`PUT query failed ${queryText}`, err);
+      res.sendStatus(500);
+    });
 });
 
 // UPDATE GROCERIES UNPURCHASE ALL
@@ -55,10 +65,53 @@ router.put("/:id", (req, res) => {
 router.put("/unpurchase", (req, res) => {
   let queryText = `UPDATE "groceries" SET "purchased" = 'false'`;
 
-  pool.query(queryText).then((result) => {
-    console.log(`PUT query worked ${queryText}`, result);
-    res.send;
-  });
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log(`PUT query worked ${queryText}`, result);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(`PUT query failed, ${queryText}`, err);
+    });
+});
+
+// DELETE SINGLE ITEM
+
+router.delete("/:id", (req, res) => {
+  console.log("req params: ", req.params);
+
+  let id = req.params.id;
+
+  let queryText = `DELETE FROM "groceries" WHERE "id" = $1;`;
+
+  pool
+    .query(queryText, [id])
+    .then((result) => {
+      console.log(`DELETE query worked, ${queryText}`, result);
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.log(`DELETE query failed, ${queryText}`, err);
+      res.sendStatus(500);
+    });
+});
+
+// DELETE ALL
+
+router.delete("/all", (req, res) => {
+  let queryText = `DELETE FROM "groceries";`;
+
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log(`DELETE query worked, ${queryText}`, result);
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.log(`DELETE query failed, ${queryText}`, err);
+      res.sendStatus(500);
+    });
 });
 
 // LEAVE AT BOTTOM
