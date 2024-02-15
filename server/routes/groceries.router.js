@@ -45,8 +45,9 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   console.log("In put on server");
   let id = req.params.id;
-  let queryText = `UPDATE "groceries" SET "purchased" = 'true' 
-    WHERE 'id' = $1;`;
+  console.log(id);
+  let queryText = `UPDATE "groceries" SET "purchased" = true 
+    WHERE "id" = $1;`;
 
   pool
     .query(queryText, [id])
