@@ -6,11 +6,16 @@ A shopping list app to track groceries with functionality to mark groceries as p
 
 React Shopping List is the solution to track groceries efficiently to ensure you won't forget to buy all of your needed groceries. When the app is loaded, add your shopping list item, quantity, and unit (if applicable) to the input fields and click 'Add Item.' 
 
-#### Buttons
+#### Base Mode Buttons
 - 'Buy' will mark the grocery item as purchased and will send that item to the bottom of your list
 - 'Remove' will remove the item from your list
 - 'Clear Purchased' will mark all items in your list as unpurchased
 - 'Clear List' will remove all items from your list
+#### Edit Mode Buttons
+- 'Edit' will allow you to type into the input field to change your item name, quantity, and unit
+- 'Confirm Edit' will confirm your changes
+- 'Cancel Edit' will cancel your changes and return the item to pre edit mode values
+
 
 ### Dependencies
 This app uses: 
