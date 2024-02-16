@@ -8,8 +8,10 @@ import ShoppingList from "../ShoppingList/ShoppingList.jsx";
 
 function App() {
   const [groceryItems, setGroceryItems] = useState([]);
+  const [edited, setEdited] = useState(0);
 
   const getGroceries = () => {
+    setEdited(0);
     axios({
       method: "GET",
       url: "/api/groceries",
@@ -30,8 +32,18 @@ function App() {
     <div>
       <Header />
       <main>
-        <GroceryForm getGroceries={getGroceries} />
-        <ShoppingList groceryItems={groceryItems} getGroceries={getGroceries} />
+        <GroceryForm
+          getGroceries={getGroceries}
+          edited={edited}
+          groceryItems={groceryItems}
+          setEdited={setEdited}
+        />
+        <ShoppingList
+          groceryItems={groceryItems}
+          getGroceries={getGroceries}
+          setEdited={setEdited}
+          edited={edited}
+        />
       </main>
     </div>
   );

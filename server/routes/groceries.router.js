@@ -60,7 +60,25 @@ router.put("/:id", (req, res) => {
       res.sendStatus(500);
     });
 });
+// Edit grocery
+router.put("/e/:id", (req, res) => {
+  console.log("In edit put on server");
+  let id = req.params.id;
+  let { item_name, quantity, unit } = req.body;
+  let queryText = `UPDATE "groceries" SET "item_name" = $1, "quantity" = $2, "unit" = $3
+    WHERE "id" = $4;`;
 
+  pool
+    .query(queryText, [item_name, quantity, unit, id])
+    .then((result) => {
+      console.log(`PUT query worked ${queryText}`, result);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(`PUT query failed ${queryText}`, err);
+      res.sendStatus(500);
+    });
+});
 // UPDATE GROCERIES UNPURCHASE ALL
 
 router.put("/g/unpurchase", (req, res) => {
